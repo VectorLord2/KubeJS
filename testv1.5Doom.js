@@ -196,15 +196,24 @@ ServerEvents.recipes((event) => {
     .id("custom:shadow_orb_recipe");
 
   // Exotic Eye
-  event.remove({ output: "endrem:exotic_eye" });
-  event
-    .shapeless("endrem:exotic_eye", [
-      "ars_nouveau:water_essence",
-      "cataclysm:coral_chunk",
-      "alexscaves:gazing_pearl",
-      "create_aquatic_ambitions:conduit_cage",
-    ])
-    .id("custom:exotic_eye_recipe");
+  //  event.remove({ output: "endrem:exotic_eye" });
+  //  event
+  //    .shapeless("endrem:exotic_eye", [
+  //      "ars_nouveau:water_essence",
+  //      "cataclysm:coral_chunk",
+  //      "alexscaves:gazing_pearl",
+  //      "create_aquatic_ambitions:conduit_cage",
+  //    ])
+  //    .id("custom:exotic_eye_recipe");
+
+  // Exotic eye
+  // event.remove({ output: "endrem:exotic_eye" });
+  // event.shapeless("endrem:exotic_eye", [
+  //   "ars_nouveauLwater_essence",
+  //   "cataclysm:coral_chunk",
+  //   "alexcaves:gazing_pearl",
+  //   "create_aquatic_ambitions:conduit_cage",
+  // ]);
 
   // Witch Eye
   event.remove({ output: "endrem:witch_eye" });
@@ -227,9 +236,14 @@ ServerEvents.recipes((event) => {
   event.remove({ output: "endrem:undead_eye" });
 
   //! remove misc crafting recipes
-  event.remove({ output: "callfromthedepth_:depths_key" });
+  event.remove({ output: "callfromthedepth_:depth" });
   event.remove({ output: "tempad:tempad" });
   event.remove({ output: "terramity:exodium_shield_amulet" });
+  event.remove({ output: "terramity:lucky_dice" });
+  event.remove({ output: "terramity:poker_chip_bracelets" });
+  event.remove({ output: "terramity:chthonic_curse_bracelets" });
+  event.remove({ output: "terramity:exodium_twin_bracelets" });
+  event.remove({ output: "terramity:fateful_coin" });
 
   //! building gadgets rework recipes
   event.remove({ output: "buildinggadgets2:gadget_building" });
@@ -237,6 +251,13 @@ ServerEvents.recipes((event) => {
   event.remove({ output: "buildinggadgets2:gadget_cut_paste" });
   event.remove({ output: "buildinggadgets2:gadget_destruction" });
   event.remove({ output: "buildinggadgets2:gadget_exchanging" });
+
+  event.shaped("endrem:exotic_eye", ["CWC", "CGC", "CMC"], {
+    C: "cataclysm:coral_chunk",
+    W: "ars_nouveau:water_essence",
+    G: "alexscaves:gazing_pearl",
+    M: "create_aquatic_additions:mechanical_conduit",
+  });
 
   event
     .shaped("buildinggadgets2:gadget_building", ["BCB", "CRC", "BCB"], {
@@ -296,8 +317,8 @@ LootJS.modifiers((event) => {
   //   event.removeLoot("endrem:loot_tables/*");
 
   //! remove specific loot
-  event.removeLoot("relics:infinity_ham");
-  event.removeLoot("relics:holy_locket");
+  //  event.removeLoot("relics:infinity_ham");
+  //  event.removeLoot("relics:holy_locket")
 
   //! adding loot tables
   event
@@ -328,4 +349,36 @@ LootJS.modifiers((event) => {
     .addEntityLootModifier("aquamirae:captain_cornelia")
     .killedByPlayer()
     .addLoot("endrem:black_eye");
+  //  event
+  //    .addEntityLootModifier('terramity:ultra_sniffer')
+  //    .removeloot('terramity:ultra_sniffer_fur');
 });
+
+//LootJS.events.addLootTableModification(event => {
+//  event.modifyEntity('terramity:ultra_sniffer', lootTable => {
+//    lootTable.removeItems([
+//      'terramity:ultra_sniffer_fur'
+//    ]);
+//  });
+//});
+
+LootJS.modifiers((event) => {
+  event
+    .addEntityLootModifier("terramity:ultra_sniffer")
+    .removeLoot("terramity:ultra_sniffer_fur");
+});
+
+LootJS.modifiers((event) => {
+  event
+    .addLootTableModifier("minecraft:chests/*")
+    .removeLoot("relics:infinity_ham");
+});
+
+LootJS.modifiers((event) => {
+  event
+    .addLootTableModifier("minecraft:chests/*")
+    .removeLoot("relics:holy_locket");
+});
+
+//LootJS.modifiers(event => {
+//event.getLootTable("minecraft:chests/*").removeItem("relics:holy_locket");});
