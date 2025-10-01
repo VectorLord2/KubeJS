@@ -252,12 +252,14 @@ ServerEvents.recipes((event) => {
   event.remove({ output: "buildinggadgets2:gadget_destruction" });
   event.remove({ output: "buildinggadgets2:gadget_exchanging" });
 
-  event.shaped("endrem:exotic_eye", ["CWC", "CGC", "CMC"], {
-    C: "cataclysm:coral_chunk",
-    W: "ars_nouveau:water_essence",
-    G: "alexscaves:gazing_pearl",
-    M: "create_aquatic_additions:mechanical_conduit",
-  });
+  event
+    .shaped("endrem:exotic_eye", ["CWC", "CGC", "CMC"], {
+      C: "cataclysm:coral_chunk",
+      W: "ars_nouveau:water_essence",
+      G: "alexscaves:gazing_pearl",
+      M: "create_aquatic_ambitions:mechanical_conduit",
+    })
+    .id("custom:exotic_eye");
 
   event
     .shaped("buildinggadgets2:gadget_building", ["BCB", "CRC", "BCB"], {
